@@ -1,11 +1,11 @@
 name: "Use ophub script to package Armvirt as OpenWrt"
-author: "ophub"
+author: "kzero"
 description: "Package Armvirt as OpenWrt. Support Amlogic s9xxx tv box."
 inputs:
   mode:
     description: "Choose script."
     required: false
-    default: "ophub"
+    default: "kzero"
   openwrt_path:
     description: "Choose armvirt64 file path."
     required: false
