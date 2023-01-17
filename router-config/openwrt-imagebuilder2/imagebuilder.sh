@@ -34,7 +34,7 @@
 #
 # Set default parameters
 make_path="${PWD}"
-openwrt_dir="openwrt"
+openwrt_dir="openwrt2"
 imagebuilder_path="${make_path}/${openwrt_dir}"
 custom_files_path="${make_path}/router-config/openwrt-imagebuilder2/files"
 custom_config_file="${make_path}/router-config/openwrt-imagebuilder2/config"
@@ -192,10 +192,10 @@ rebuild_firmware() {
         \
         ${config_list} \
         "
-
+    my_packages=""
     # Rebuild firmware
-    make image PROFILE="Default" FILES="files"
-
+    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
+    
     sync && sleep 3
     echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
