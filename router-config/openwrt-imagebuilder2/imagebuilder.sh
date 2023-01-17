@@ -34,7 +34,7 @@
 #
 # Set default parameters
 make_path="${PWD}"
-openwrt_dir="openwrt2"
+openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
 custom_files_path="${make_path}/router-config/openwrt-imagebuilder2/files"
 custom_config_file="${make_path}/router-config/openwrt-imagebuilder2/config"
@@ -108,16 +108,16 @@ custom_packages() {
     [[ -d "packages" ]] || mkdir packages
 
     # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
+    amlogic_api="https://github.com/kzer00/packages-compile/releases/download/01%2F17_2023_13%2F43_aarch64_cortex-a53"
     #
-    amlogic_file="luci-app-amlogic"
+    amlogic_file="luci-app-openclash"
     amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
     wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
     #
-    amlogic_i18n="luci-i18n-amlogic"
-    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
+    #amlogic_i18n="luci-i18n-amlogic"
+    #amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
+    #wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
 
     # Download other luci-app-xxx
@@ -167,7 +167,7 @@ rebuild_firmware() {
 
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
-   # my_packages="\
+    my_packages="\
         acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
         btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark  \
         coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
@@ -188,11 +188,11 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
+        luci-app-openclash\
         \
         ${config_list} \
         "
-    my_packages="${config_list}\"
+    #my_packages="${config_list}\"
     # Rebuild firmware
     make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
     
