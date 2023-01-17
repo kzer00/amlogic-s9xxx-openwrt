@@ -192,7 +192,7 @@ rebuild_firmware() {
         \
         ${config_list} \
         "
-    my_packages=""
+    my_packages="${config_list}\"
     # Rebuild firmware
     make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
     
