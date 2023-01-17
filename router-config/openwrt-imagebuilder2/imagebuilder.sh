@@ -108,11 +108,11 @@ custom_packages() {
     [[ -d "packages" ]] || mkdir packages
 
     # Download luci-app-amlogic
-    amlogic_api="https://github.com/kzer00/packages-compile/releases/download/01%2F17_2023_13%2F43_aarch64_cortex-a53"
+    #amlogic_api="https://github.com/kzer00/packages-compile/releases/download/01%2F17_2023_13%2F43_aarch64_cortex-a53"
     #
-    amlogic_file="luci-app-openclash"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
+    #amlogic_file="luci-app-openclash"
+    #amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
+    #wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
     #
     #amlogic_i18n="luci-i18n-amlogic"
@@ -180,7 +180,7 @@ rebuild_firmware() {
         proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar  \
         tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
         uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
-        xz-utils ziptool zoneinfo-asia zoneinfo-core zstd dnsmasq-full kmod-usb-net-rndis \
+        xz-utils ziptool zoneinfo-asia zoneinfo-core zstd dnsmasq kmod-usb-net-rndis \
         \
         luci luci-base luci-compat luci-i18n-base-en  luci-lib-base  \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
@@ -194,7 +194,7 @@ rebuild_firmware() {
         "
     #my_packages="${config_list}\"
     # Rebuild firmware
-    make -ik image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
+    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
     
     sync && sleep 3
     echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
