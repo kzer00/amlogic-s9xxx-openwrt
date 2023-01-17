@@ -167,7 +167,7 @@ rebuild_firmware() {
 
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
-    my_packages="\
+   # my_packages="\
         acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
         btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark  \
         coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
@@ -194,7 +194,7 @@ rebuild_firmware() {
         "
 
     # Rebuild firmware
-    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
+    make image PROFILE="Default" FILES="files"
 
     sync && sleep 3
     echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
