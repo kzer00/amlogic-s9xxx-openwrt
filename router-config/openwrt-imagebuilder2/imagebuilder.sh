@@ -225,8 +225,8 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         luci-theme-tano openssh-sftp-server luci-app-openclash \
-        luci-app-amlogic xmm-modem modemimfo luci-app-modeminfo \
-        modeminfo-serial-fibocom modeminfo-serial-xmm atinout \
+        luci-app-amlogic xmm-modem \
+        luci-app-passwall atinout \
         \
         ${config_list} \
         "
