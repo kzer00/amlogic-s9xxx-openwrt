@@ -216,7 +216,7 @@ rebuild_firmware() {
         perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe  \
         proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar  \
         tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
-        uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
+        uuidgen wget-ssl whereis which wpad-basic wwan xfs-fsck xfs-mkfs xz  \
         xz-utils ziptool zoneinfo-asia zoneinfo-core zstd  \
         \
         luci luci-base luci-compat luci-i18n-base-en luci-lib-base  \
@@ -234,7 +234,7 @@ rebuild_firmware() {
     make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
 
     sync && sleep 3
-    echo -e "${INFO} [ immortalwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
 }
 
