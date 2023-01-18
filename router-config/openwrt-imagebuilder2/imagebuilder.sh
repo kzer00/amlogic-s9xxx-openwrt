@@ -34,7 +34,7 @@
 #
 # Set default parameters
 make_path="${PWD}"
-openwrt_dir="immortalwrt"
+openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
 custom_files_path="${make_path}/router-config/openwrt-imagebuilder2/files"
 custom_config_file="${make_path}/router-config/openwrt-imagebuilder2/config"
@@ -95,7 +95,7 @@ adjust_settings() {
     # ......
 
     sync && sleep 3
-    echo -e "${INFO} [ immortalwrt ] directory status: $(ls -al 2>/dev/null)"
+    echo -e "${INFO} [ openwrt ] directory status: $(ls -al 2>/dev/null)"
 }
 
 # Add custom packages
