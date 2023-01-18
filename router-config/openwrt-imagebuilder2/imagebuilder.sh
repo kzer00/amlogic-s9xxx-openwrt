@@ -170,8 +170,8 @@ rebuild_firmware() {
     my_packages="\
         acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
         btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm oremark  \
-        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
-        docker-compose dockerd dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn  \
         kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script  \
         liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
@@ -187,11 +187,8 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        \
-       
+        ${config_list} \"
 
-        ${config_list} \
-        "
 
     # Rebuild firmware
     make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
