@@ -223,7 +223,7 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        luci-theme-tano modeminfo-serial-xmm modemonfo-serial-fibocom\
+        luci-theme-tano modeminfo-serial-xmm modeminfo-serial-fibocom\
         luci-app-amlogic luci-app-modeminfo luci-app-tinyfm modeminfo atinout xmm-modem\
         \
         ${config_list} \
