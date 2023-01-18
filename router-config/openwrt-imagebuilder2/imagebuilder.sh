@@ -62,6 +62,7 @@ download_imagebuilder() {
     # Downloading imagebuilder files
     # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armvirt/64/openwrt-imagebuilder-21.02.3-armvirt-64.Linux-x86_64.tar.xz
     download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armvirt/64/openwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    download_file="https://downloads.immortalwrt.org/releases/21.02.3/targets/armvirt/64/immortalwrt-imagebuilder-21.02.3-armvirt-64.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
@@ -223,7 +224,7 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        luci-theme-tano openssh-sftp-server \
+        luci-theme-tano openssh-sftp-server luci-app-openclash \
         luci-app-amlogic luci-app-tinyfm xmm-modem \
         \
         ${config_list} \
