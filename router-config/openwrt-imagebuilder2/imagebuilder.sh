@@ -108,7 +108,7 @@ custom_packages() {
     [[ -d "packages" ]] || mkdir packages
 
     # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/kzer00/packages-compile/releases"
+    amlogic_api="https://api.github.com/repos/kzer00/rootfs/releases"
     
     #
     amlogic_file="luci-app-amlogic"
