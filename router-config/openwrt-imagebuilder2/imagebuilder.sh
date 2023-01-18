@@ -127,32 +127,32 @@ custom_packages() {
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_tinyfm} ] is downloaded successfully."
     #   
     amlogic_xmm="xmm-modem"
-    amlogic_xmm_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
+    amlogic_xmm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
     wget -q ${amlogic_xmm_down} -O packages/${amlogic_xmm_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_xmm} ] is downloaded successfully."
     #   
     amlogic_atinout="atinout"
-    amlogic_atinout_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_atinout}.*.ipk" | head -n 1)"
+    amlogic_atinout_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_atinout}.*.ipk" | head -n 1)"
     wget -q ${amlogic_atinout_down} -O packages/${amlogic_atinout_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_atinout} ] is downloaded successfully."
     #
     amlogic_modem="modeminfo"
-    amlogic_modem_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_modem}.*.ipk" | head -n 1)"
+    amlogic_modem_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_modem}.*.ipk" | head -n 1)"
     wget -q ${amlogic_modem_down} -O packages/${amlogic_modem_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_modem} ] is downloaded successfully."
     #
     amlogic_luci_app_modeminfo="luci-app-modeminfo"
-    amlogic_luci_modem_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_luci_app_modeminfo}.*.ipk" | head -n 1)"
+    amlogic_luci_modem_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_luci_app_modeminfo}.*.ipk" | head -n 1)"
     wget -q ${amlogic_luci_modem_down} -O packages/${amlogic_luci_modem_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_luci_app_modeminfo} ] is downloaded successfully."
     #
     amlogic_xmm="modeminfo-serial-xmm"
-    amlogic_xmm_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
+    amlogic_xmm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
     wget -q ${amlogic_xmm_down} -O packages/${amlogic_xmm_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_xmm} ] is downloaded successfully."
     #
     amlogic_fibocom="modeminfo-serial-fibocom"
-    amlogic_fibocom_down="$curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_fibocom}.*.ipk" | head -n 1)"
+    amlogic_fibocom_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_fibocom}.*.ipk" | head -n 1)"
     wget -q ${amlogic_fibocom_down} -O packages/${amlogic_fibocom_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_fibocom} ] is downloaded successfully."
     
