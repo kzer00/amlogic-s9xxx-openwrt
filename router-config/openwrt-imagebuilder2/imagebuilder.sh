@@ -61,14 +61,14 @@ download_imagebuilder() {
 
     # Downloading imagebuilder files
     # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armvirt/64/openwrt-imagebuilder-21.02.3-armvirt-64.Linux-x86_64.tar.xz
-   # download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armvirt/64/openwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
-    download_file="https://downloads.immortalwrt.org/releases/${rebuild_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armvirt/64/openwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    #download_file="https://downloads.immortalwrt.org/releases/${rebuild_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
     # Unzip and change the directory name
-    tar -xJf immortalwrt-imagebuilder-* && sync && rm -f immortalwrt-imagebuilder-*.tar.xz
-    mv -f immortalwrt-imagebuilder-* ${openwrt_dir}
+    tar -xJf openwrt-imagebuilder-* && sync && rm -f immortalwrt-imagebuilder-*.tar.xz
+    mv -f openwrt-imagebuilder-* ${openwrt_dir}
 
     sync && sleep 3
     echo -e "${INFO} [ ${make_path} ] directory status: $(ls . -l 2>/dev/null)"
@@ -224,9 +224,9 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        luci-theme-tano openssh-sftp-server luci-app-openclash \
+        luci-theme-tano openssh-sftp-server nano \
         luci-app-amlogic xmm-modem \
-        luci-app-passwall atinout \
+        atinout \
         \
         ${config_list} \
         "
