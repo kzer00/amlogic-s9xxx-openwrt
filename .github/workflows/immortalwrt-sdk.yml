@@ -77,7 +77,7 @@ on:
 
 env:
   TZ: America/New_York
-  IMAGEBUILDER_SH: router-config/openwrt-imagebuilder2/imagebuilder.sh
+  IMAGEBUILDER_SH: router-config/openwrt-imagebuilder3/imagebuilder.sh
 
 jobs:
   build:
