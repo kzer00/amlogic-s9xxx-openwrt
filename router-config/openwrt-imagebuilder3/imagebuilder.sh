@@ -36,8 +36,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/router-config/openwrt-imagebuilder2/files"
-custom_config_file="${make_path}/router-config/openwrt-imagebuilder2/config"
+custom_files_path="${make_path}/router-config/openwrt-imagebuilder3/files"
+custom_config_file="${make_path}/router-config/openwrt-imagebuilder3/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
