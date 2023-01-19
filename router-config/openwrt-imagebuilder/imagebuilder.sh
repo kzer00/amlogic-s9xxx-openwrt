@@ -76,6 +76,9 @@ download_imagebuilder() {
 # Adjust related files in the ImageBuilder directory
 adjust_settings() {
     cd ${imagebuilder_path}
+    repo="https://github.com/kzer00/rootfs/releases/download/official-v.1.0"
+    wget -P packages ${repo}/luci-app-tinyfm_git-24.017.09357-f7d856a_all.ipk
+    
     
     echo "src/gz custom_generic https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/generic" >> repositories.conf
     echo "src/gz custom_arch https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
@@ -237,7 +240,7 @@ rebuild_firmware() {
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         atinout modeminfo-serial-xmm \
         openssh-sftp-server modeminfo-serial-fibocom \
-        luci-app-modeminfo xmm-modem modeminfo luci-app-tinyfm \
+        luci-app-modeminfo xmm-modem modeminfo  \
         \
         ${config_list} \
         "
