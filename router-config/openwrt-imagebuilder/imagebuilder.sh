@@ -108,17 +108,61 @@ custom_packages() {
     [[ -d "packages" ]] || mkdir packages
 
     # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
+    #amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
+    #custom
+    amlogic_api="https://api.github.com/repos/kzer00/rootfs/releases"
+    
     #
     amlogic_file="luci-app-amlogic"
     amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
     wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
     #
-    amlogic_i18n="luci-i18n-amlogic"
-    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
+    
+    
+    
+    amlogic_tano="luci-theme-tano"
+    amlogic_tano_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_tano}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_tano_down} -O packages/${amlogic_tano_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_tano} ] is downloaded successfully."
+    #
+    amlogic_tinyfm="luci-app-tinyfm"
+    amlogic_tinyfm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_tinyfm}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_tinyfm_down} -O packages/${amlogic_tinyfm_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_tinyfm} ] is downloaded successfully."
+    #   
+    amlogic_xmm="xmm-modem"
+    amlogic_xmm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_xmm_down} -O packages/${amlogic_xmm_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_xmm} ] is downloaded successfully."
+    #   
+    amlogic_atinout="atinout"
+    amlogic_atinout_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_atinout}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_atinout_down} -O packages/${amlogic_atinout_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_atinout} ] is downloaded successfully."
+    #
+    amlogic_modem="modeminfo"
+    amlogic_modem_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_modem}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_modem_down} -O packages/${amlogic_modem_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_modem} ] is downloaded successfully."
+    #
+    amlogic_luci_app_modeminfo="luci-app-modeminfo"
+    amlogic_luci_modem_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_luci_app_modeminfo}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_luci_modem_down} -O packages/${amlogic_luci_modem_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_luci_app_modeminfo} ] is downloaded successfully."
+    #
+    amlogic_xmm="modeminfo-serial-xmm"
+    amlogic_xmm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_xmm_down} -O packages/${amlogic_xmm_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_xmm} ] is downloaded successfully."
+    #
+    amlogic_fibocom="modeminfo-serial-fibocom"
+    amlogic_fibocom_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_fibocom}.*.ipk" | head -n 1)"
+    wget -q ${amlogic_fibocom_down} -O packages/${amlogic_fibocom_down##*/}
+    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_fibocom} ] is downloaded successfully."
+    
+    
+    
 
     # Download other luci-app-xxx
     # ......
@@ -169,7 +213,7 @@ rebuild_firmware() {
     # sorting by https://build.moz.one
     my_packages="\
         acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
-        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark  \
+        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm coremark  \
         coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
         docker-compose dockerd dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn  \
@@ -187,8 +231,9 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
+        atinout \
+        luci-app-amlogic openssh-sftp-server luci-app-tinyfm \
+        luci-app-modeminfo luci-theme-tano xmm-modem modeminfo \
         \
         ${config_list} \
         "
