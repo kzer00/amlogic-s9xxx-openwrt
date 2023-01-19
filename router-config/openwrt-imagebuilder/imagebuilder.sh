@@ -112,34 +112,7 @@ custom_packages() {
     #custom
     amlogic_api="https://api.github.com/repos/kzer00/rootfs/releases"
     
-    #
-    amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
-    #
-    
-    
-    
-    amlogic_tano="luci-theme-tano"
-    amlogic_tano_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_tano}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_tano_down} -O packages/${amlogic_tano_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_tano} ] is downloaded successfully."
-    #
-    amlogic_tinyfm="luci-app-tinyfm"
-    amlogic_tinyfm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_tinyfm}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_tinyfm_down} -O packages/${amlogic_tinyfm_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_tinyfm} ] is downloaded successfully."
-    #   
-    amlogic_xmm="xmm-modem"
-    amlogic_xmm_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_xmm}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_xmm_down} -O packages/${amlogic_xmm_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_xmm} ] is downloaded successfully."
-    #   
-    amlogic_atinout="atinout"
-    amlogic_atinout_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_atinout}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_atinout_down} -O packages/${amlogic_atinout_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_atinout} ] is downloaded successfully."
+   
     #
     amlogic_modem="modeminfo"
     amlogic_modem_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_modem}.*.ipk" | head -n 1)"
@@ -232,8 +205,8 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         atinout \
-        luci-app-amlogic openssh-sftp-server luci-app-tinyfm \
-        luci-app-modeminfo luci-theme-tano xmm-modem modeminfo \
+        openssh-sftp-server \
+        luci-app-modeminfo modeminfo \
         \
         ${config_list} \
         "
