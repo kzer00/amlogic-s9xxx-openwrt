@@ -76,9 +76,10 @@ download_imagebuilder() {
 # Adjust related files in the ImageBuilder directory
 adjust_settings() {
     cd ${imagebuilder_path}
+    
+    echo "src/gz custom_generic https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/generic" >> repositories.conf
+    echo "src/gz custom_arch https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
-    echo "src/gz custom_generic https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/generic" >> repositories.conf
-    echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
     # For .config file
@@ -234,9 +235,9 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        atinout \
-        openssh-sftp-server luci-app-tinyfm \
-        luci-app-modeminfo xmm-modem modeminfo \
+        atinout modeminfo-serial-xmm \
+        openssh-sftp-server modeminfo-serial-fibocom \
+        luci-app-modeminfo xmm-modem modeminfo luci-app-tinyfm \
         \
         ${config_list} \
         "
