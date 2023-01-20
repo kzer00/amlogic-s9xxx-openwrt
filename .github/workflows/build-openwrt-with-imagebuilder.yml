@@ -136,7 +136,7 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: OpenWrt_Aml_imagebuilder_${{ env.RELEASES_BRANCH }}_${{ env.PACKAGED_OUTPUTDATE }}
+          tag: OpenWrt_Official.23.03.3_${{ env.RELEASES_BRANCH }}_${{ env.PACKAGED_OUTPUTDATE }}
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
@@ -145,7 +145,5 @@ jobs:
             * Firmware information
             Default IP: 192.168.1.1
             Default username: root
-            Default password: password
-            Default WIFI name: OpenWrt
-            Default WIFI password: none
-            Install to EMMC: Login to OpenWrt → System → Amlogic Service → Install OpenWrt
+            Password:
+ 
