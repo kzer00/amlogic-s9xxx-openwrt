@@ -239,6 +239,7 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         atinout modeminfo-serial-xmm modeminfo-serial-telit \
+        -dnsmasq dnsmasq-full luci-app-oenclash luci-app-tinyfm \
         openssh-sftp-server modeminfo-serial-fibocom \
         luci-app-modeminfo xmm-modem modeminfo luci-app-amlogic  \
         \
