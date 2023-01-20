@@ -32,6 +32,8 @@ on:
           - 5.10.160
           - 5.15.85
           - 6.1.1
+          - 6.1.6
+          - 6.1.7
       kernel_auto:
         description: "Auto use the latest kernel"
         required: false
