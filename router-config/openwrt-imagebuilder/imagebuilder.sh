@@ -80,8 +80,8 @@ adjust_settings() {
     #wget -P packages ${repo}/luci-app-tinyfm_git-24.017.09357-f7d856a_all.ipk
     
     
-    echo "src/gz custom_generic https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/generic" >> repositories.conf
-    echo "src/gz custom_arch https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
+    echo "src/gz custom_generic https://raw.githubusercontent.com/kzer00/repo/main/aarch64-cortex-a53" >> repositories.conf
+    #echo "src/gz custom_arch https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
@@ -117,12 +117,12 @@ custom_packages() {
     # Download luci-app-amlogic
     #amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
     #custom
-    amlogic_api="https://api.github.com/repos/kzer00/rootfs/releases"
+    #amlogic_api="https://api.github.com/repos/kzer00/rootfs/releases"
     
     #
-    amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
+    #amlogic_file="luci-app-amlogic"
+    #amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
+    #wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
     [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
     #
     
@@ -238,11 +238,11 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        atinout modeminfo-serial-xmm modeminfo-serial-telit \
-        -dnsmasq dnsmasq-full luci-app-openclash \
+        atinout modeminfo-serial-xmm kmod-usb-net-rndis \
+        -dnsmasq dnsmasq-full \
         openssh-sftp-server modeminfo-serial-fibocom \
         luci-app-modeminfo xmm-modem modeminfo luci-app-amlogic  \
-        \
+        luci-app-passwall luci-app-openclash \
         ${config_list} \
         "
 
