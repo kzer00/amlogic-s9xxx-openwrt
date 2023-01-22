@@ -230,7 +230,7 @@ rebuild_firmware() {
         luci-app-modeminfo openssh-sftp-server luci-app-openclash \
         luci-app-amlogic xmm-modem modeminfo-serial-xmm \
         luci-app-passwall atinout modeminfo-serial-telit \
-        \
+        kmod-usb-net-rndis \
         ${config_list} \
         "
 
