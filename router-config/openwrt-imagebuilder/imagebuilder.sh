@@ -80,8 +80,8 @@ adjust_settings() {
     #wget -P packages ${repo}/luci-app-tinyfm_git-24.017.09357-f7d856a_all.ipk
     
     
-    echo "src/gz custom_generic https://raw.githubusercontent.com/kzer00/repo/main/aarch64-cortex-a53" >> repositories.conf
-    #echo "src/gz custom_arch https://raw.githubusercontent.com/kzer00/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
+    echo "src/gz custom_generic https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/generic" >> repositories.conf
+    echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
