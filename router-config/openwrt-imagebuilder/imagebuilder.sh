@@ -80,8 +80,8 @@ adjust_settings() {
     #wget -P packages ${repo}/luci-app-tinyfm_git-24.017.09357-f7d856a_all.ipk
     
     
-    echo "src/gz custom_generic https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/generic" >> repositories.conf
-    echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
+    echo "src/gz custom_repo https://raw.githubusercontent.com/kzerO0/repo/main/aarch64_cortex-a53" >> repositories.conf
+    #echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
@@ -227,7 +227,7 @@ rebuild_firmware() {
         kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script  \
         liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
         mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt  \
-        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe  \
+        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp  \
         proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar  \
         tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
         uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
