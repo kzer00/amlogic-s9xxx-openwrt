@@ -77,8 +77,7 @@ download_imagebuilder() {
 # Adjust related files in the ImageBuilder directory
 adjust_settings() {
     cd ${imagebuilder_path}
-    echo "src/gz custom_generic https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/generic" >> repositories.conf
-    echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
+    echo "src/gz custom_repo https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
@@ -229,8 +228,8 @@ rebuild_firmware() {
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         luci-app-modeminfo openssh-sftp-server luci-app-openclash \
         luci-app-amlogic xmm-modem modeminfo-serial-xmm \
-        luci-app-passwall atinout modeminfo-serial-telit \
-        kmod-usb-net-rndis \
+        luci-app-passwall atinout modeminfo-serial-fibocom \
+        kmod-usb-net-rndis -luci-app-turboacc \
         ${config_list} \
         "
 
