@@ -15,7 +15,7 @@ on:
         description: "Select the releases branch"
         required: false
         default: "22.03.3"
-        type: choice
+        type: false
         options:
           - 22.03.3
           - 21.02.5
@@ -25,7 +25,7 @@ on:
         description: "Select Amlogic board"
         required: false
         default: "s905x3_s905d_s912"
-        type: choice
+        type: false
         options:
           - all
           - s905x3_s905d_s912
@@ -50,7 +50,7 @@ on:
         description: "Select kernel version"
         required: false
         default: "5.15.85_6.1.1"
-        type: choice
+        type: false
         options:
           - 5.4.225_5.10.160_5.15.85
           - 5.4.225_5.10.160
