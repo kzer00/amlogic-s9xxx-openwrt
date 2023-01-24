@@ -240,9 +240,9 @@ rebuild_firmware() {
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         atinout modeminfo-serial-xmm kmod-usb-net-rndis \
         -dnsmasq dnsmasq-full \
-        openssh-sftp-server modeminfo-serial-fibocom \
+        openssh-sftp-server modeminfo-serial-telit \
         luci-app-modeminfo xmm-modem modeminfo luci-app-amlogic  \
-        luci-app-passwall luci-app-openclash \
+        luci-app-atinout luci-app-openclash \
         ${config_list} \
         "
 
