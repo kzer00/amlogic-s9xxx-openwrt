@@ -77,8 +77,8 @@ download_imagebuilder() {
 adjust_settings() {
     cd ${imagebuilder_path}
     #repo="https://github.com/kzer00/rootfs/releases/download/official-v.1.0"
-    #wget -P packages ${repo}/luci-app-tinyfm_git-24.017.09357-f7d856a_all.ipk
-    
+     wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/30-openwrt_kzeroo
+     wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/99-uhttpd
     
     echo "src/gz custom_repo https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53" >> repositories.conf
     #echo "src/gz custom_arch https://raw.githubusercontent.com/lrdrdn/my-opkg-repo/main/aarch64_cortex-a53" >> repositories.conf
@@ -231,12 +231,12 @@ rebuild_firmware() {
         tini ttyd tune2fs uclient-fetch usb-modeswitch  \
         uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
         xz-utils ziptool zstd  \
-        luci-theme-tano \
+        luci-theme-tano nano htop \
         luci luci-compat luci-app-modeminfo xmm-modem \
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-ncm luci-theme-material luci-app-openclash \
         luci-proto-wireguard luci-proto-qmi modeminfo-serial-xmm  modeminfo-serial-fibocom  \
-        openssh-sftp-server -dnsmasq dnsmasq-full luci-app-passwall luci-app-oc-editor \
+        openssh-sftp-server -dnsmasq dnsmasq-full luci-app-oc-editor \
         luci-app-tinyfm luci-app-amlogic luci-app-ttyd kmod-usb-net-rndis luci-theme-argon \
         ${config_list} \
         "
