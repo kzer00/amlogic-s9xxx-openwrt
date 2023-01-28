@@ -218,18 +218,26 @@ rebuild_firmware() {
 
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
-    my_packages="\
-        iw iwinfo \
-        kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211  \
-        resize2fs curl \
-        usb-modeswitch  nano \
-        luci-proto-3g luci-proto-ncm  \
-        luci-proto-qmi luci-proto-wireguard \
-        atinout modeminfo-serial-xmm kmod-usb-net-rndis \
-        -dnsmasq dnsmasq-full htop luci-app-ttyd \
-        openssh-sftp-server modeminfo-serial-telit \
-        luci-app-modeminfo xmm-modem modeminfo luci-app-amlogic  \
-        luci-app-atinout luci-app-openclash \
+    my_packages="acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
+        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm coremark  \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl   \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
+        f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn  \
+        kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script  \
+        liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
+        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt  \
+        perlbase-time perlbase-unicode perlbase-utf8 pigz  \
+        pv rename resize2fs runc subversion-client subversion-libs tar  \
+        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
+        uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
+        xz-utils ziptool zstd  \
+        luci-theme-tano \
+        luci luci-compat luci-app-modeminfo xmm-modem \
+        luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
+        luci-proto-3g luci-proto-ncm luci-theme-material luci-app-openclash \
+        luci-proto-wireguard luci-proto-qmi modeminfo-serial-xmm  modeminfo-serial-fibocom  \
+        openssh-sftp-server -dnsmasq dnsmasq-full luci-app-passwall luci-app-oc-edior \
+        luci-app-tinyfm luci-app-amlogic luci-app-ttyd kmod-usb-net-rndis luci-theme-argon \
         ${config_list} \
         "
 
