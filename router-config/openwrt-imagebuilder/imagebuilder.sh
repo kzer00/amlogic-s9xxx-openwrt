@@ -227,8 +227,8 @@ rebuild_firmware() {
         liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
         mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt  \
         perlbase-time perlbase-unicode perlbase-utf8 pigz  \
-        pv rename resize2fs runc subversion-client subversion-libs tar  \
-        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
+        pv rename resize2fs tar  \
+        tini ttyd tune2fs uclient-fetch usb-modeswitch  \
         uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
         xz-utils ziptool zstd  \
         luci-theme-tano \
@@ -236,7 +236,7 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-ncm luci-theme-material luci-app-openclash \
         luci-proto-wireguard luci-proto-qmi modeminfo-serial-xmm  modeminfo-serial-fibocom  \
-        openssh-sftp-server -dnsmasq dnsmasq-full luci-app-passwall luci-app-oc-edior \
+        openssh-sftp-server -dnsmasq dnsmasq-full luci-app-passwall luci-app-oc-editor \
         luci-app-tinyfm luci-app-amlogic luci-app-ttyd kmod-usb-net-rndis luci-theme-argon \
         ${config_list} \
         "
