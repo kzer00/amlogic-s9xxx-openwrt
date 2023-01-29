@@ -195,21 +195,21 @@ custom_config() {
 # Add custom files
 # The FILES variable allows custom configuration files to be included in images built with Image Builder.
 # The [ files ] directory should be placed in the Image Builder root directory where you issue the make command.
-custom_files() {
-    cd ${imagebuilder_path}
-    echo -e "${STEPS} Start adding custom files..."
+#custom_files() {
+    #cd ${imagebuilder_path}
+    #echo -e "${STEPS} Start adding custom files..."
 
-    if [[ -d "${custom_files_path}" ]]; then
+    #if [[ -d "${custom_files_path}" ]]; then
         # Copy custom files
-        [[ -d "files" ]] || mkdir -p files
-        cp -rf ${custom_files_path}/* files
+     #   [[ -d "files" ]] || mkdir -p files
+      #  cp -rf ${custom_files_path}/* files
 
-        sync && sleep 3
-        echo -e "${INFO} [ files ] directory status: $(ls files -l 2>/dev/null)"
-    else
-        echo -e "${INFO} No customized files were added."
-    fi
-}
+       # sync && sleep 3
+        #echo -e "${INFO} [ files ] directory status: $(ls files -l 2>/dev/null)"
+    #else
+     #   echo -e "${INFO} No customized files were added."
+  #  fi
+#}
 
 # Rebuild OpenWrt firmware
 rebuild_firmware() {
