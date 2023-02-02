@@ -169,9 +169,9 @@ rebuild_firmware() {
     # sorting by https://build.moz.one
     my_packages="\
         acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
-        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark  \
-        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
-        docker-compose dockerd dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
+        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm  coremark  \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn  \
         kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script  \
         liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
@@ -182,13 +182,13 @@ rebuild_firmware() {
         uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
         xz-utils ziptool zoneinfo-asia zoneinfo-core zstd  \
         \
-        luci luci-base luci-compat luci-i18n-base-en luci-i18n-base-zh-cn luci-lib-base  \
-        luci-lib-docker luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
+        luci luci-base luci-compat luci-i18n-base-en luci-lib-base  \
+        luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
+        kmod-usb-net-rndis -dnsmasq dnsmasq-full \
+        luci-app-amlogic openssh-sftp-server \
         \
         ${config_list} \
         "
