@@ -403,8 +403,6 @@ extract_openwrt() {
     mount -t btrfs -o discard,compress=zstd:6 ${loop_new}p2 ${tag_rootfs}
     [[ "${?}" -eq "0" ]] || error_msg "mount ${loop_new}p2 failed!"
 
-    # Create snapshot directory
-
 
     # Unzip the openwrt package
     tar -xzf ${openwrt_path}/${openwrt_file_name} -C ${tag_rootfs}
@@ -475,8 +473,6 @@ refactor_files() {
 
     cd ${tag_rootfs}
 
-    # Add directory
-    mkdir -p .reserved boot run
 
     # Edit fstab
     sed -i "s|LABEL=ROOTFS|UUID=${ROOTFS_UUID}|" etc/fstab
@@ -630,11 +626,7 @@ EOF
         sed -e "s/macaddr=.*/macaddr=${random_macaddr}:07/" "brcmfmac4354-sdio.txt" >"brcmfmac4354-sdio.amlogic,sm1.txt"
     )
 
-    cd ${make_path}
 
-
-
-    sync && sleep 3
 }
 
 clean_tmp() {
