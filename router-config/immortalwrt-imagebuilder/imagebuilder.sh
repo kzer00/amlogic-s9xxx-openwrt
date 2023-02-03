@@ -61,7 +61,7 @@ download_imagebuilder() {
 
     # Downloading imagebuilder files
     # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armvirt/64/openwrt-imagebuilder-21.02.3-armvirt-64.Linux-x86_64.tar.xz
-    download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armvirt/64/openwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    download_file="https://downloads.immortalwrt.org/releases/${rebuild_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
@@ -179,7 +179,7 @@ rebuild_firmware() {
         perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe  \
         proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar  \
         tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
-        uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
+        uuidgen wget-ssl whereis which wpad-basic wwan xfs-fsck xfs-mkfs xz  \
         xz-utils ziptool zoneinfo-asia zoneinfo-core zstd  \
         \
         luci luci-base luci-compat luci-i18n-base-en luci-lib-base  \
@@ -187,7 +187,7 @@ rebuild_firmware() {
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        kmod-usb-net-rndis -dnsmasq dnsmasq-full \
+        kmod-usb-net-rndis luci-app-openclash dnsmasq-full \
         luci-app-amlogic openssh-sftp-server \
         \
         ${config_list} \
