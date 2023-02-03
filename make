@@ -404,7 +404,7 @@ extract_openwrt() {
     [[ "${?}" -eq "0" ]] || error_msg "mount ${loop_new}p2 failed!"
 
     # Create snapshot directory
-    btrfs subvolume create ${tag_rootfs}/etc >/dev/null 2>&1
+
 
     # Unzip the openwrt package
     tar -xzf ${openwrt_path}/${openwrt_file_name} -C ${tag_rootfs}
@@ -632,9 +632,7 @@ EOF
 
     cd ${make_path}
 
-    # Create snapshot
-    mkdir -p ${tag_rootfs}/.snapshots
-    btrfs subvolume snapshot -r ${tag_rootfs}/etc ${tag_rootfs}/.snapshots/etc-000 >/dev/null 2>&1
+
 
     sync && sleep 3
 }
