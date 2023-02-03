@@ -17,10 +17,10 @@ on:
         default: "22.03.3"
         type: choice
         options:
-          - 22.03.3
-          - 21.02.5
-          - 19.07.10
-          - 18.06.9
+          - 21.02.0
+          - 21.02.1
+          - 21.02.3
+          - 21.02.4
       openwrt_board:
         description: "Select Amlogic board"
         required: false
