@@ -108,17 +108,17 @@ custom_packages() {
     [[ -d "packages" ]] || mkdir packages
 
     # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
+    #amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
     #
-    amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
+    #amlogic_file="luci-app-amlogic"
+    #amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
+    #wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
+    #[[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
     #
-    amlogic_i18n="luci-i18n-amlogic"
-    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
-    [[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
+    #amlogic_i18n="luci-i18n-amlogic"
+    #amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
+    #wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
+    #$[[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
 
     # Download other luci-app-xxx
     # ......
@@ -188,7 +188,7 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         kmod-usb-net-rndis -dnsmasq dnsmasq-full \
-        luci-app-amlogic openssh-sftp-server \
+        openssh-sftp-server \
         \
         ${config_list} \
         "
