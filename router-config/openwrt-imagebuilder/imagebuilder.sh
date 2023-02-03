@@ -100,32 +100,6 @@ adjust_settings() {
 # Add custom packages
 # If there is a custom package or ipk you would prefer to use create a [ packages ] directory,
 # If one does not exist and place your custom ipk within this directory.
-custom_packages() {
-    cd ${imagebuilder_path}
-    echo -e "${STEPS} Start adding custom packages..."
-
-    # Create a [ packages ] directory
-    [[ -d "packages" ]] || mkdir packages
-
-    # Download luci-app-amlogic
-    #amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
-    #
-    #amlogic_file="luci-app-amlogic"
-    #amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    #wget -q ${amlogic_file_down} -O packages/${amlogic_file_down##*/}
-    #[[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
-    #
-    #amlogic_i18n="luci-i18n-amlogic"
-    #amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    #wget -q ${amlogic_i18n_down} -O packages/${amlogic_i18n_down##*/}
-    #$[[ "${?}" -eq "0" ]] && echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
-
-    # Download other luci-app-xxx
-    # ......
-
-    sync && sleep 3
-    echo -e "${INFO} [ packages ] directory status: $(ls packages -l 2>/dev/null)"
-}
 
 # Add custom packages, lib, theme, app and i18n, etc.
 custom_config() {
@@ -185,7 +159,7 @@ rebuild_firmware() {
         luci luci-base luci-compat luci-i18n-base-en luci-lib-base  \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
         luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
-        luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
+        luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         kmod-usb-net-rndis -dnsmasq dnsmasq-full \
         openssh-sftp-server \
