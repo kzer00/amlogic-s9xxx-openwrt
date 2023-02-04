@@ -565,6 +565,7 @@ refactor_files() {
     echo "meson_gxbb_wdt" >etc/modules.d/watchdog
 
     # Add blacklist
+    mkdir boot 
     mkdir -p etc/modprobe.d
     cat >etc/modprobe.d/99-local.conf <<EOF
 blacklist snd_soc_meson_aiu_i2s
