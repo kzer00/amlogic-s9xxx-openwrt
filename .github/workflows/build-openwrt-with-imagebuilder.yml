@@ -185,7 +185,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - kzero
 
 env:
   TZ: America/New_York
