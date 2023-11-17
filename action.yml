@@ -37,7 +37,7 @@ inputs:
   builder_name:
     description: "Set OpenWrt builder signature."
     required: false
-    default: ""
+    default: "kzero"
 
 runs:
   using: "composite"
