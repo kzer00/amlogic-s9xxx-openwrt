@@ -63,16 +63,9 @@ download_imagebuilder() {
     cd ${make_path}
     echo -e "${STEPS} Start downloading OpenWrt files..."
 
-    # Determine the target system (Imagebuilder files naming has changed since 23.05.0)
-    if [[ "${op_branch:0:2}" -ge "23" && "${op_branch:3:2}" -ge "05" ]]; then
-        target_system="armsr/armv8"
-        target_name="armsr-armv8"
-        target_profile="Default"
-  
-    fi
-
+   
     # Downloading imagebuilder files
-    download_file="https://downloads.${op_sourse}.org/releases/${op_branch}/targets/${target_system}/${op_sourse}-imagebuilder-${op_branch}-${target_name}.Linux-x86_64.tar.xz"
+    download_file="https://downloads.openwrt.org/releases/23.05.2/targets/armsr/armv8/openwrt-imagebuilder-23.05.2-armsr-armv8.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
