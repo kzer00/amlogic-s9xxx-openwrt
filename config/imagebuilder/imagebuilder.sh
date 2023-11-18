@@ -9,20 +9,16 @@
 # https://github.com/ophub/amlogic-s9xxx-openwrt
 #
 # Description: Build OpenWrt with Image Builder
-# Copyright (C) 2021~ https://github.com/unifreq/openwrt_packit
-# Copyright (C) 2021~ https://github.com/ophub/amlogic-s9xxx-openwrt
-# Copyright (C) 2021~ https://downloads.openwrt.org/releases
-# Copyright (C) 2023~ https://downloads.immortalwrt.org/releases
+# Copyright (C) 2021- https://github.com/unifreq/openwrt_packit
+# Copyright (C) 2021- https://github.com/ophub/amlogic-s9xxx-openwrt
 #
 # Download from: https://downloads.openwrt.org/releases
-#                https://downloads.immortalwrt.org/releases
-#
 # Documentation: https://openwrt.org/docs/guide-user/additional-software/imagebuilder
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-# Command: ./config/imagebuilder/imagebuilder.sh <source:branch>
-#          ./config/imagebuilder/imagebuilder.sh openwrt:21.02.3
+# Command: ./router-config/openwrt-imagebuilder/imagebuilder.sh <branch>
+#          ./router-config/openwrt-imagebuilder/imagebuilder.sh 21.02.3
 #
 #======================================== Functions list ========================================
 #
@@ -40,8 +36,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/config/imagebuilder/files"
-custom_config_file="${make_path}/config/imagebuilder/config"
+custom_files_path="${make_path}/router-config/openwrt-imagebuilder/files"
+custom_config_file="${make_path}/router-config/openwrt-imagebuilder/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
@@ -63,15 +59,15 @@ download_imagebuilder() {
     cd ${make_path}
     echo -e "${STEPS} Start downloading OpenWrt files..."
 
-   
     # Downloading imagebuilder files
-    download_file="https://downloads.openwrt.org/releases/23.05.2/targets/armsr/armv8/openwrt-imagebuilder-23.05.2-armsr-armv8.Linux-x86_64.tar.xz"
+    # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armsr/armv8/openwrt-imagebuilder-21.02.3-armsr-armv8.Linux-x86_64.tar.xz
+    download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armsr/armv8/openwrt-imagebuilder-${rebuild_branch}-armsr-armv8.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
     # Unzip and change the directory name
-    tar -xJf *-imagebuilder-* && sync && rm -f *-imagebuilder-*.tar.xz
-    mv -f *-imagebuilder-* ${openwrt_dir}
+    tar -xJf openwrt-imagebuilder-* && sync && rm -f openwrt-imagebuilder-*.tar.xz
+    mv -f openwrt-imagebuilder-* ${openwrt_dir}
 
     sync && sleep 3
     echo -e "${INFO} [ ${make_path} ] directory status: $(ls . -l 2>/dev/null)"
@@ -80,6 +76,16 @@ download_imagebuilder() {
 # Adjust related files in the ImageBuilder directory
 adjust_settings() {
     cd ${imagebuilder_path}
+    wget -P files/www/luci-static/resources/view/status/include https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/29_port.js
+    wget -P files/usr/share/rpcd/acl.d/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/luci-mod-status-index.json
+    wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/30_interfaces.sh
+    wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/90_wifi.sh
+    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/hoam/main/amlogic-s9xxx/common-files/rootfs/etc/banner
+    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/profile && chmod +x /etc/profile
+    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/shadow
+    wget -P files/usr/bin https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/sysinfo && chmod +x /files/usr/bin/sysinfo
+    echo "src/gz custom https://raw.githubusercontent.com/indowrt/indowrt/main/aarch64_generic" >> repositories.conf
+    sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
     # For .config file
@@ -104,45 +110,6 @@ adjust_settings() {
 # Add custom packages
 # If there is a custom package or ipk you would prefer to use create a [ packages ] directory,
 # If one does not exist and place your custom ipk within this directory.
-custom_packages() {
-    cd ${imagebuilder_path}
-
-    wget -P files/www/luci-static/resources/view/status/include https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/29_port.js
-    wget -P files/usr/share/rpcd/acl.d/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/luci-mod-status-index.json
-    wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/30_interfaces.sh
-    wget -P files/etc/uci-defaults/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/90_wifi.sh
-    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/hoam/main/amlogic-s9xxx/common-files/rootfs/etc/banner
-    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/profile && chmod +x /etc/profile
-    wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/shadow
-    wget -P files/usr/bin https://raw.githubusercontent.com/kzer00/repo/main/aarch64_generic/sysinfo && chmod +x /files/usr/bin/sysinfo
-    echo "src/gz custom https://raw.githubusercontent.com/indowrt/indowrt/main/aarch64_cortex-a53" >> repositories.conf
-    sed -i 's/option check_signature/# option check_signature/g' repositories.conf
-    echo -e "${STEPS} Start adding custom packages..."
-
-    # Create a [ packages ] directory
-    [[ -d "packages" ]] || mkdir packages
-
-    # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
-    #
-    amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget ${amlogic_file_down} -q -P packages
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_file} ] download failed!"
-    echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
-    #
-    amlogic_i18n="luci-i18n-amlogic"
-    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    wget ${amlogic_i18n_down} -q -P packages
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_i18n} ] download failed!"
-    echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
-
-    # Download other luci-app-xxx
-    # ......
-
-    sync && sleep 3
-    echo -e "${INFO} [ packages ] directory status: $(ls packages -l 2>/dev/null)"
-}
 
 # Add custom packages, lib, theme, app and i18n, etc.
 custom_config() {
@@ -194,7 +161,6 @@ rebuild_firmware() {
         kmod-usb-net-rndis -dnsmasq dnsmasq-full \
         openssh-sftp-server luci-app-openclash luci-app-internet-detector\
         luci-theme-neobirdkawe xmm-modem luci-app-modeminfo luci-app-atinout-mod \
-     
         ${config_list} \
         "
 
@@ -202,25 +168,23 @@ rebuild_firmware() {
     make image PROFILE="generic" PACKAGES="${my_packages}" FILES="files"
 
     sync && sleep 3
-    echo -e "${INFO} [ openwrt/bin/targets/*/* ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${INFO} [ openwrt/bin/targets/armsr/armv8 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
 }
 
 # Show welcome message
 echo -e "${STEPS} Welcome to Rebuild OpenWrt Using the Image Builder."
 [[ -x "${0}" ]] || error_msg "Please give the script permission to run: [ chmod +x ${0} ]"
-[[ -z "${1}" ]] && error_msg "Please specify the OpenWrt Branch, such as [ ${0} openwrt:22.03.3 ]"
-[[ "${1}" =~ ^[a-z]{3,}:[0-9]+ ]] || error_msg "Incoming parameter format <source:branch>: openwrt:22.03.3"
-op_sourse="${1%:*}"
-op_branch="${1#*:}"
+[[ -z "${1}" ]] && error_msg "Please specify the OpenWrt Branch, such as [ ${0} 21.02.3 ]"
+rebuild_branch="${1}"
 echo -e "${INFO} Rebuild path: [ ${PWD} ]"
-echo -e "${INFO} Rebuild Source: [ ${op_sourse} ], Branch: [ ${op_branch} ]"
+echo -e "${INFO} Rebuild branch: [ ${rebuild_branch} ]"
 echo -e "${INFO} Server space usage before starting to compile: \n$(df -hT ${make_path}) \n"
 #
 # Perform related operations
 download_imagebuilder
 adjust_settings
-custom_packages
+#custom_packages
 custom_config
 custom_files
 rebuild_firmware
