@@ -12,18 +12,7 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      releases_branch:
-        description: "Select the releases branch"
-        required: false
-        default: ""
-        type: choice
-        options:
-          - openwrt:23.05.2
-          - openwrt:22.03.5
-          - openwrt:21.02.7
-          - openwrt:19.07.10
-          - openwrt:18.06.9
-          - immortalwrt:21.02.7
+      
       openwrt_board:
         description: "Select device board"
         required: false
