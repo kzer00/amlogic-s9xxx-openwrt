@@ -60,8 +60,8 @@ download_imagebuilder() {
     echo -e "${STEPS} Start downloading OpenWrt files..."
 
     # Downloading imagebuilder files
-    # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armsr/armv8/openwrt-imagebuilder-21.02.3-armsr-armv8.Linux-x86_64.tar.xz
-    download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armsr/armv8/openwrt-imagebuilder-${rebuild_branch}-armsr-armv8.Linux-x86_64.tar.xz"
+    # Download example: https://downloads.openwrt.org/releases/21.02.3/targets/armvirt/64/openwrt-imagebuilder-21.02.3-armvirt-64.Linux-x86_64.tar.xz
+    download_file="https://downloads.openwrt.org/releases/${rebuild_branch}/targets/armvirt/64/openwrt-imagebuilder-${rebuild_branch}-armvirt-64.Linux-x86_64.tar.xz"
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
@@ -84,7 +84,7 @@ adjust_settings() {
     wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/profile && chmod +x /etc/profile
     wget -P files/etc/ https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/shadow
     wget -P files/usr/bin https://raw.githubusercontent.com/kzer00/repo/main/aarch64_cortex-a53/sysinfo && chmod +x /files/usr/bin/sysinfo
-    echo "src/gz custom https://raw.githubusercontent.com/indowrt/indowrt/main/aarch64_generic" >> repositories.conf
+    echo "src/gz custom_repo https://raw.githubusercontent.com/indowrt/indowrt/main/aarch64_cortex-a53" >> repositories.conf
     sed -i 's/option check_signature/# option check_signature/g' repositories.conf
     echo -e "${STEPS} Start adjusting .config file settings..."
 
@@ -159,16 +159,16 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-ncm  \
         luci-proto-wireguard luci-proto-qmi usb-modeswitch luci-app-ttyd \
         kmod-usb-net-rndis -dnsmasq dnsmasq-full \
-        openssh-sftp-server luci-app-openclash luci-app-internet-detector\
+        openssh-sftp-server luci-app-openclash \
         luci-theme-neobirdkawe xmm-modem luci-app-modeminfo luci-app-atinout-mod \
         ${config_list} \
         "
 
     # Rebuild firmware
-    make image PROFILE="generic" PACKAGES="${my_packages}" FILES="files"
+    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
 
     sync && sleep 3
-    echo -e "${INFO} [ openwrt/bin/targets/armsr/armv8 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
 }
 
