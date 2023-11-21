@@ -697,7 +697,8 @@ extract_openwrt() {
     # Mount rootfs
     mount_try btrfs ${loop_new}p2 ${tag_rootfs}
 
-   
+    # Create snapshot directory
+    btrfs subvolume create ${tag_rootfs}/etc >/dev/null 2>&1
 
     # Unzip the OpenWrt rootfs file
     tar -mxzf ${openwrt_path}/${openwrt_default_file} -C ${tag_rootfs}
@@ -823,7 +824,8 @@ refactor_rootfs() {
     process_msg "(5/6) Refactor rootfs files."
     cd ${tag_rootfs}
 
-    
+    # Add directory
+    mkdir -p .reserved boot run
 
     # Edit fstab
     [[ -f "etc/fstab" && -f "etc/config/fstab" ]] || error_msg "The [ fstab ] files does not exist."
@@ -913,8 +915,7 @@ refactor_rootfs() {
     echo "option" >etc/modules.d/usb-serial-option
     # For rk3328
     echo -e "snd_soc_simple_card_utils\nsnd_soc_simple_card\nsnd_soc_rockchip_i2s" >etc/modules.d/snd-rk3328
-    #add repo custom 
-    echo "src/gz custom https://raw.githubusercontent.com/indowrt/indowrt/main/aarch64_cortex-a53" >/etc/opkg/customfeeds.conf
+
     # Add blacklist
     mkdir -p etc/modprobe.d
     cat >etc/modprobe.d/99-local.conf <<EOF
@@ -989,7 +990,6 @@ EOF
     # Add firmware version information to the terminal page
     [[ -n "${builder_name}" ]] && builder_display="Builder Name: ${builder_name} | " || builder_display=""
     [[ -f "etc/banner" ]] && {
-       
         echo " Install OpenWrt: System → Amlogic Service → Install OpenWrt" >>etc/banner
         echo " Update  OpenWrt: System → Amlogic Service → Online  Update" >>etc/banner
         echo " Board: ${board} | OpenWrt Kernel: ${kernel_name}" >>etc/banner
@@ -1027,7 +1027,10 @@ EOF
 
     cd ${current_path}
 
-   
+    # Create snapshot
+    mkdir -p ${tag_rootfs}/.snapshots
+    btrfs subvolume snapshot -r ${tag_rootfs}/etc ${tag_rootfs}/.snapshots/etc-000 >/dev/null 2>&1
+
     sync && sleep 3
 }
 
